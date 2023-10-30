@@ -1,5 +1,5 @@
-Practica Android de Television Interactiva: iTunes
+<h1> Practica Android de Television Interactiva: iTunes </h1>
 
-Grupo:
-Anna Ferrer
-Alex Collado
+Grupo:<br>
+Anna Ferrer<br>
+Alex Collado<br>
