@@ -29,6 +29,7 @@ export default function MainScreen() {
                 trackPrice={item.trackPrice}
                 releaseDate={item.releaseDate}
                 country={item.country}
+                genre={item.primaryGenreName}
               />
             )}
           />
