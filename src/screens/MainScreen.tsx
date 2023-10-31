@@ -23,6 +23,7 @@ export default function MainScreen() {
             renderItem={({item}) => (
               <MusicVideoComponent
                 trackName={item.trackName}
+                artistName={item.artistName}
                 previewUrl={item.previewUrl}
                 artworkUrl={item.artworkUrl100}
                 trackPrice={item.trackPrice}

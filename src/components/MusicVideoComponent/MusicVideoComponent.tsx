@@ -1,8 +1,9 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export type MusicVideoComponentProps = {
   trackName: string;
+  artistName: string;
   previewUrl: string;
   artworkUrl: string;
   trackPrice: number;
@@ -12,17 +13,22 @@ export type MusicVideoComponentProps = {
 
 const styles = StyleSheet.create({
   thumbnail: {
-    height: 100,
+    height: 144,
     width: 200,
   },
 });
 
 function MusicVideoComponent(props: MusicVideoComponentProps) {
   return (
-    <View>
+    <TouchableOpacity>
       <Text>{props.trackName}</Text>
-      <Image style={styles.thumbnail} source={{uri: props.artworkUrl}} />
-    </View>
+      <Text>{props.artistName}</Text>
+      {props.previewUrl ? (
+        <Image style={styles.thumbnail} source={{uri: props.artworkUrl}} />
+      ) : (
+        <View style={styles.thumbnail} />
+      )}
+    </TouchableOpacity>
   );
 }
 
