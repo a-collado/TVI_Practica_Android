@@ -1,6 +1,5 @@
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
 
 export type MusicVideoComponentProps = {
   trackName: string;
@@ -11,6 +10,7 @@ export type MusicVideoComponentProps = {
   releaseDate: string;
   country: string;
   genre: string;
+  callback: () => void;
 };
 
 const styles = StyleSheet.create({
@@ -21,13 +21,13 @@ const styles = StyleSheet.create({
 });
 
 function MusicVideoComponent(props: MusicVideoComponentProps) {
-  const navigation = useNavigation();
+  /*const navigation = useNavigation();
+  const onPress = () => {
+    navigation.navigate('Detail', {musicVideo: props});
+  };*/
 
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('Detail', {musicVideo: props});
-      }}>
+    <TouchableOpacity testID="MusicVideoButton" onPress={props.callback}>
       <Text>{props.trackName}</Text>
       <Text>{props.artistName}</Text>
       {props.previewUrl ? (

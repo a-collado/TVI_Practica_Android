@@ -6,7 +6,7 @@ import Input from '../components/Input/Input';
 import MusicVideoComponent from '../components/MusicVideoComponent/MusicVideoComponent';
 import {useFetch} from '../Api/Api';
 
-export default function MainScreen() {
+export default function MainScreen({navigation}) {
   const {search, data} = useFetch();
 
   const onSearch = (value: string) => {
@@ -30,6 +30,9 @@ export default function MainScreen() {
                 releaseDate={item.releaseDate}
                 country={item.country}
                 genre={item.primaryGenreName}
+                callback={() => {
+                  navigation.navigate('Detail', {musicVideo: item});
+                }}
               />
             )}
           />
