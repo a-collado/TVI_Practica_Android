@@ -15,8 +15,17 @@ export type MusicVideoComponentProps = {
 
 const styles = StyleSheet.create({
   thumbnail: {
-    height: 144,
-    width: 200,
+    height: 100,
+    width: 140,
+  },
+  flexcolumn: {
+    flexDirection: 'column',
+    alignSelf: 'flex-start',
+    marginLeft: 5
+  },
+  flexrow: {
+    flexDirection: 'row',
+    alignSelf: 'flex-start'
   },
 });
 
@@ -28,13 +37,18 @@ function MusicVideoComponent(props: MusicVideoComponentProps) {
 
   return (
     <TouchableOpacity testID="MusicVideoButton" onPress={props.callback}>
-      <Text>{props.trackName}</Text>
-      <Text>{props.artistName}</Text>
-      {props.previewUrl ? (
-        <Image style={styles.thumbnail} source={{uri: props.artworkUrl}} />
-      ) : (
-        <View style={styles.thumbnail} />
-      )}
+      <View style={[styles.flexrow, {marginTop: 10}]}>
+        {props.previewUrl ? (
+          <Image style={styles.thumbnail} source={{uri: props.artworkUrl}} />
+        ) : (
+          <View style={styles.thumbnail} />
+        )}
+        
+        <View style={styles.flexcolumn}>
+          <Text style = {{fontWeight: 'bold'}}>{props.trackName}</Text>
+          <Text>{props.artistName}</Text>
+        </View>
+      </View>
     </TouchableOpacity>
   );
 }
