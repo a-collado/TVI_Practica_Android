@@ -55,7 +55,7 @@ export default function MainScreen({navigation}: any) {
       </View>
 
       {data && (
-        <View style={{marginTop: 16}}>
+        <View style={{marginTop: 16, height: '80%'}}>
           <FlatList
             data={data}
             renderItem={({item}) => (
