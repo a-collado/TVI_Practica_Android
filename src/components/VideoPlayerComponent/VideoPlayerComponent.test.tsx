@@ -1,10 +1,11 @@
 import React from 'react';
-import {render, screen, fireEvent} from '@testing-library/react-native';
+import {render, screen /*, fireEvent*/} from '@testing-library/react-native';
 import '@testing-library/jest-native/extend-expect';
 import {jest, test} from '@jest/globals';
 import VideoPlayerComponent from './VideoPlayerComponent';
 
-const callbacMok = jest.fn();
+jest.mock('react-native-video', () => 'Video');
+//const callbacMok = jest.fn();
 
 function renderTestVideoPlayerComponent() {
   return (

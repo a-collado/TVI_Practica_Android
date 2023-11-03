@@ -2,11 +2,11 @@
 import React from 'react';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import {View, Text, FlatList} from 'react-native';
-import Input from '../components/Input/Input';
+import InputComponent from '../components/InputComponent/InputComponent';
 import MusicVideoComponent from '../components/MusicVideoComponent/MusicVideoComponent';
 import {useFetch} from '../Api/Api';
 
-export default function MainScreen({navigation}) {
+export default function MainScreen({navigation}: any) {
   const {search, data} = useFetch();
 
   const onSearch = (value: string) => {
@@ -15,7 +15,7 @@ export default function MainScreen({navigation}) {
 
   return (
     <View>
-      <Input onSubmitEditing={onSearch} />
+      <InputComponent onSubmitEditing={onSearch} />
       {data && (
         <View style={{marginTop: 16}}>
           <FlatList

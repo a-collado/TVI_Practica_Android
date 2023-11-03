@@ -6,9 +6,10 @@ export interface InputProps {
   onSubmitEditing: (value: string) => void;
 }
 
-const Input = ({onSubmitEditing}: InputProps) => {
+const InputComponent = ({onSubmitEditing}: InputProps) => {
   return (
     <View
+      testID="InputSearch"
       style={{
         borderBottomWidth: 1,
         borderWidth: 1,
@@ -20,6 +21,7 @@ const Input = ({onSubmitEditing}: InputProps) => {
         shadowRadius: 3,
       }}>
       <TextInput
+        testID="InputSearchBar"
         onSubmitEditing={event => onSubmitEditing(event.nativeEvent.text)}
         returnKeyType="search"
       />
@@ -27,4 +29,4 @@ const Input = ({onSubmitEditing}: InputProps) => {
   );
 };
 
-export default Input;
+export default InputComponent;
