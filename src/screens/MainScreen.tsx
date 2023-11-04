@@ -24,8 +24,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'lightgray',
     borderRadius: 30,
     alignSelf: 'center',
-    borderWidth: 1,
-    width: 75,
+    borderWidth: 1
   },
 });
 
@@ -35,27 +34,27 @@ export default function MainScreen({navigation}: any) {
   const onSearch = (value: string) => {
     search(value);
   };
+  
+  const onPressChannelNavigation = () => {
+    navigation.navigate('Channel')
+  }
 
   return (
     //<View style = {{backgroundColor: 'lightblue'}}>
     <View style={[styles.flexcolumn, {width: '90%'}]}>
+      
       <Text style={{fontSize: 33, margin: 30}}>LS Search</Text>
 
-      <View
-        style={{
-          flexDirection: 'row',
-          alignSelf: 'center',
-          justifyContent: 'space-around',
-        }}>
+      <View style={{flexDirection: 'row', alignSelf: 'center', justifyContent:'space-around'}}>
         <InputComponent onSubmitEditing={onSearch} />
 
-        <TouchableOpacity style={[styles.searchbutton, {marginLeft: 15}]}>
-          <Text style={{color: 'white'}}>Buscar</Text>
+        <TouchableOpacity /*onPress={onPressSearch}*/ style={[styles.searchbutton, {marginLeft: 15, width: 75}]}>
+          <Text style = {{color: 'white'}}>Buscar</Text>
         </TouchableOpacity>
       </View>
 
       {data && (
-        <View style={{marginTop: 16, height: '80%'}}>
+        <View style={{marginTop: 16, backgroundColor: 'lightgray', height: '68%'}}>
           <FlatList
             data={data}
             renderItem={({item}) => (
@@ -76,6 +75,11 @@ export default function MainScreen({navigation}: any) {
           />
         </View>
       )}
+
+      <TouchableOpacity onPress={onPressChannelNavigation} style={[styles.searchbutton, {marginTop: 9}]}>
+        <Text style = {{color: 'white'}}>Canales TV</Text>
+      </TouchableOpacity>
+
     </View>
     //</View>
   );
