@@ -3,6 +3,7 @@ import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 export type MusicVideoComponentProps = {
   trackName: string;
+  trackId: string;
   artistName: string;
   previewUrl: string;
   artworkUrl: string;
@@ -21,11 +22,11 @@ const styles = StyleSheet.create({
   flexcolumn: {
     flexDirection: 'column',
     alignSelf: 'flex-start',
-    marginLeft: 5
+    marginLeft: 5,
   },
   flexrow: {
     flexDirection: 'row',
-    alignSelf: 'flex-start'
+    alignSelf: 'flex-start',
   },
 });
 
@@ -43,9 +44,9 @@ function MusicVideoComponent(props: MusicVideoComponentProps) {
         ) : (
           <View style={styles.thumbnail} />
         )}
-        
+
         <View style={styles.flexcolumn}>
-          <Text style = {{fontWeight: 'bold'}}>{props.trackName}</Text>
+          <Text style={{fontWeight: 'bold'}}>{props.trackName}</Text>
           <Text>{props.artistName}</Text>
         </View>
       </View>
