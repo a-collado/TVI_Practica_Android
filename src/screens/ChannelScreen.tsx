@@ -1,10 +1,11 @@
+/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from "react";
-import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
-import Video from "react-native-video";
+import React, { useState, useEffect } from 'react';
+import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
+import Video from 'react-native-video';
 import tvData from './../Api/tv.json';
-import TvChannelComponent from "../components/TvChannelComponent/TvChannelComponent";
+import TvChannelComponent from '../components/TvChannelComponent/TvChannelComponent';
 
 
 const styles = StyleSheet.create({
@@ -25,12 +26,12 @@ const styles = StyleSheet.create({
       borderRadius: 30,
       //alignSelf: 'flex-start',
       borderWidth: 1,
-      margin: 4
+      margin: 4,
     },
     section: {
         borderRadius: 15,
         borderWidth: 1,
-        margin: 5
+        margin: 5,
     },
     video: {
         height: 144,
@@ -38,7 +39,7 @@ const styles = StyleSheet.create({
     },
   });
   
-export default function ChannelScreen () {
+export default function ChannelScreen ({navigation}: any) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
@@ -49,20 +50,20 @@ export default function ChannelScreen () {
 
     const onExpandTouchable = (id: string) => {
         if (expandTouchable === id) {
-            setExpandTouchable('')
+            setExpandTouchable('');
         } else {
-            setExpandTouchable(id)
+            setExpandTouchable(id);
         }
-        setExpandSecondTouchable('')
-    }
+        setExpandSecondTouchable('');
+    };
 
     const onExpandSecondTouchable = (id: string) => {
         if (expandSecondTouchable === id) {
-            setExpandSecondTouchable('')
+            setExpandSecondTouchable('');
         } else {
-            setExpandSecondTouchable(id)
+            setExpandSecondTouchable(id);
         }
-    }
+    };
 
     return (
         <View>
@@ -91,7 +92,7 @@ export default function ChannelScreen () {
                                             <Text style={{fontWeight: 'bold', fontStyle: 'italic', color: 'gray'}}>{item3.name}</Text>
                                             {item3.options.length === 0 ? (
                                                 <Text style={{fontStyle: 'italic'}}>No dispone</Text>
-                                            ): (
+                                            ) : (
                                                 <View>
                                                     <FlatList style = {{flexDirection: 'row'}}
                                                     data = {item3.options}
@@ -110,7 +111,7 @@ export default function ChannelScreen () {
                                                                         logo: item3.logo,
                                                                         url: item4.url,
                                                                         country: item.name,
-                                                                    }
+                                                                    },
                                                                 });
                                                             }}
                                                         />

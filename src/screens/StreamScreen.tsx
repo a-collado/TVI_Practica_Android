@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {MusicVideoComponentProps} from '../components/MusicVideoComponent/MusicVideoComponent';
 import VideoPlayerComponent from '../components/VideoPlayerComponent/VideoPlayerComponent';
 import {storage} from '../../App';
-import { TvChannelComponentProps } from '../components/TvChannelComponent/TvChannelComponent';
+import {TvChannelComponentProps} from '../components/TvChannelComponent/TvChannelComponent';
 
 const styles = StyleSheet.create({
   title: {
