@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React, {useCallback, useEffect, useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {MusicVideoComponentProps} from '../components/MusicVideoComponent/MusicVideoComponent';
@@ -5,23 +6,26 @@ import VideoPlayerComponent from '../components/VideoPlayerComponent/VideoPlayer
 import {storage} from '../../App';
 
 const styles = StyleSheet.create({
-  flexcolumn: {
-    flexDirection: 'column',
-    alignSelf: 'center',
-    alignItems: 'center',
+  title: {
+    fontSize: 18,
+    color: 'black',
   },
-  flexrow: {
-    flexDirection: 'row',
-    width: '90%',
-    alignSelf: 'center',
-    alignItems: 'center',
+  artist: {
+    fontSize: 14,
+    color: 'black',
+    left: 10,
   },
-  searchbutton: {
+  text: {
+    fontSize: 14,
+    color: 'black',
+    left: 5,
+  },
+  button: {
     padding: 14,
     backgroundColor: 'lightgray',
     borderRadius: 30,
-    alignSelf: 'center',
     borderWidth: 1,
+    width: '40%',
   },
 });
 
@@ -49,15 +53,6 @@ export default function DetailScreen({navigation, route}: any) {
     fetchData();
   }, [fetchData]);
 
-  /*const isFav = () => {
-    storage.load({key: 'favSong', id: musicVideo.trackId}).catch(err => {
-      if (err.name === 'NotFoundError') {
-        console.log('Not saved');
-        return false;
-      }
-    });
-  };*/
-
   const onPressFav = () => {
     setFav(false);
     storage.save({
@@ -68,22 +63,36 @@ export default function DetailScreen({navigation, route}: any) {
     });
   };
 
+  const onPressNoFav = () => {
+    setFav(true);
+    storage.remove({
+      key: 'favSong',
+      id: musicVideo.trackId,
+    });
+  };
+
   return (
     <View>
-      <Text> {musicVideo.trackName} </Text>
-      <Text> {musicVideo.artistName} </Text>
       <VideoPlayerComponent videoUrl={musicVideo.previewUrl} />
-      <Text> País: {musicVideo.country} </Text>
-      <Text> Género: {musicVideo.genre} </Text>
-      <Text> Precio: {musicVideo.trackPrice}USD</Text>
-      <Text> Fecha de salida: {musicVideo.releaseDate} </Text>
-      {fav ? (
-        <TouchableOpacity onPress={onPressFav}>
-          <Text>Save to favourites</Text>
-        </TouchableOpacity>
-      ) : (
-        <View />
-      )}
+      <Text style={styles.title}> {musicVideo.trackName} </Text>
+      <Text style={styles.artist}> {musicVideo.artistName} </Text>
+      <View style={{top: 10}}>
+        <Text style={styles.text}>País: {musicVideo.country} </Text>
+        <Text style={styles.text}>Género: {musicVideo.primaryGenreName} </Text>
+        <Text style={styles.text}>Precio: {musicVideo.trackPrice} USD</Text>
+        <Text style={styles.text}>
+          Fecha de salida: {musicVideo.releaseDate}
+        </Text>
+        {fav ? (
+          <TouchableOpacity style={styles.button} onPress={onPressFav}>
+            <Text>Guardar en favoritos</Text>
+          </TouchableOpacity>
+        ) : (
+          <TouchableOpacity style={styles.button} onPress={onPressNoFav}>
+            <Text>Quitar de favoritos</Text>
+          </TouchableOpacity>
+        )}
+      </View>
     </View>
   );
 }

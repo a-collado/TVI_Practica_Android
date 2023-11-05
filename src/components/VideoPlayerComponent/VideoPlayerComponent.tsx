@@ -8,8 +8,8 @@ export type VideoPlayerComponent = {
 
 const styles = StyleSheet.create({
   video: {
-    height: 144,
-    width: 200,
+    height: 250,
+    width: '100%',
   },
 });
 
@@ -21,6 +21,7 @@ function VideoPlayerComponent(props: VideoPlayerComponent) {
       source={{uri: props.videoUrl}}
       paused={false}
       controls={true}
+      resizeMode="contain"
     />
   );
 }

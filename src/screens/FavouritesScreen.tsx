@@ -1,11 +1,12 @@
 /* eslint-disable react-native/no-inline-styles */
 import React, {useCallback, useEffect, useState} from 'react';
 
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, FlatList, StyleSheet} from 'react-native';
 import MusicVideoComponent, {
   MusicVideoComponentProps,
 } from '../components/MusicVideoComponent/MusicVideoComponent';
 import {storage} from '../../App';
+import {useIsFocused} from '@react-navigation/native';
 
 const styles = StyleSheet.create({
   flexcolumn: {
@@ -30,6 +31,7 @@ const styles = StyleSheet.create({
 
 export default function FavouritesScreen({navigation}: any) {
   const [songs, setSongs] = useState<Array<MusicVideoComponentProps>>();
+  const isFocused = useIsFocused();
 
   const fetchData = useCallback(async () => {
     const favs = await storage.getAllDataForKey('favSong');
@@ -38,10 +40,9 @@ export default function FavouritesScreen({navigation}: any) {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+  }, [fetchData, isFocused]);
 
   return (
-    //<View style = {{backgroundColor: 'lightblue'}}>
     <View style={[styles.flexcolumn, {width: '90%'}]}>
       <FlatList
         data={songs}
@@ -51,11 +52,11 @@ export default function FavouritesScreen({navigation}: any) {
             trackId={item.trackId}
             artistName={item.artistName}
             previewUrl={item.previewUrl}
-            artworkUrl={item.artworkUrl100}
+            artworkUrl100={item.artworkUrl100}
             trackPrice={item.trackPrice}
             releaseDate={item.releaseDate}
             country={item.country}
-            genre={item.genre}
+            primaryGenreName={item.primaryGenreName}
             callback={() => {
               navigation.navigate('Detail', {musicVideo: item});
             }}

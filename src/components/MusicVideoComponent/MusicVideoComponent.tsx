@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import React from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
@@ -6,16 +7,16 @@ export type MusicVideoComponentProps = {
   trackId: string;
   artistName: string;
   previewUrl: string;
-  artworkUrl: string;
+  artworkUrl100: string;
   trackPrice: number;
   releaseDate: string;
   country: string;
-  genre: string;
+  primaryGenreName: string;
   callback: () => void;
 };
 
 const styles = StyleSheet.create({
-  thumbnail: {
+  video: {
     height: 100,
     width: 140,
   },
@@ -31,18 +32,13 @@ const styles = StyleSheet.create({
 });
 
 function MusicVideoComponent(props: MusicVideoComponentProps) {
-  /*const navigation = useNavigation();
-  const onPress = () => {
-    navigation.navigate('Detail', {musicVideo: props});
-  };*/
-
   return (
     <TouchableOpacity testID="MusicVideoButton" onPress={props.callback}>
       <View style={[styles.flexrow, {marginTop: 10}]}>
         {props.previewUrl ? (
-          <Image style={styles.thumbnail} source={{uri: props.artworkUrl}} />
+          <Image style={styles.video} source={{uri: props.artworkUrl100}} />
         ) : (
-          <View style={styles.thumbnail} />
+          <View style={styles.video} />
         )}
 
         <View style={styles.flexcolumn}>
