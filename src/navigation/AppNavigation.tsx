@@ -4,6 +4,7 @@ import MainScreen from '../screens/MainScreen';
 import DetailScreen from '../screens/DetailScreen';
 import ChannelScreen from '../screens/ChannelScreen';
 import FavouritesScreen from '../screens/FavouritesScreen';
+import StreamScreen from '../screens/StreamScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +29,11 @@ export default function AppNavigation() {
       <Stack.Screen
         name="Favourites"
         component={FavouritesScreen}
+        options={{headerShown: true}}
+      />
+      <Stack.Screen
+        name="Stream"
+        component={StreamScreen}
         options={{headerShown: true}}
       />
     </Stack.Navigator>

@@ -12,37 +12,21 @@ export type TvChannelComponentProps = {
 };
 
 const styles = StyleSheet.create({
-  video: {
-    height: 100,
-    width: 140,
-  },
-  flexcolumn: {
-    flexDirection: 'column',
-    alignSelf: 'flex-start',
-    marginLeft: 5,
-  },
-  flexrow: {
-    flexDirection: 'row',
-    alignSelf: 'flex-start',
+  logo: {
+    height: 40,
+    width: 40,
   },
 });
 
 function TvChannelComponent(props: TvChannelComponentProps) {
   return (
-    <Text></Text>/*<TouchableOpacity onPress={props.callback}>
-      <View style={[styles.flexrow, {marginTop: 10}]}>
-        {props.previewUrl ? (
-          <Image style={styles.video} source={{uri: props.artworkUrl100}} />
-        ) : (
-          <View style={styles.video} />
+    <TouchableOpacity style = {{margin: 3}} onPress={props.callback}>
+        {props.logo && (
+          <Image style= {styles.logo} source={{uri: props.logo}} />
         )}
-
-        <View style={styles.flexcolumn}>
-          <Text style={{fontWeight: 'bold'}}>{props.trackName}</Text>
-          <Text>{props.artistName}</Text>
-        </View>
-      </View>
-    </TouchableOpacity>*/
+          <Text style = {{fontStyle: 'italic'}}>Click</Text>
+        
+    </TouchableOpacity>
   );
 }
 
