@@ -32,7 +32,7 @@ const onImageError = () => {
         {props.logo && (
           <Image style= {styles.logo} source={{uri: props.logo}} onError={onImageError}/>
         )}
-        {error && (
+        {error || !props.logo && (
           <Image style= {[styles.logo, {marginTop: -40}]} source={{uri: IMG_ERROR}} onError={onImageError}/>
         )}
     </TouchableOpacity>
