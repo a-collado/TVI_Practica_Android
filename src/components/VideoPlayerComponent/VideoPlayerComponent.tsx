@@ -4,6 +4,7 @@ import Video from 'react-native-video';
 
 export type VideoPlayerComponent = {
   videoUrl: string;
+  doControls: boolean;
 };
 
 const styles = StyleSheet.create({
@@ -20,7 +21,7 @@ function VideoPlayerComponent(props: VideoPlayerComponent) {
       style={styles.video}
       source={{uri: props.videoUrl}}
       paused={false}
-      controls={true}
+      controls={props.doControls}
       resizeMode="contain"
     />
   );

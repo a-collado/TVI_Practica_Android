@@ -78,7 +78,10 @@ export default function DetailScreen({navigation, route}: any) {
 
   return (
     <View>
-      <VideoPlayerComponent videoUrl={musicVideo.previewUrl} />
+      <VideoPlayerComponent
+        videoUrl={musicVideo.previewUrl}
+        doControls={true}
+      />
       <Text style={styles.title}> {musicVideo.trackName} </Text>
       <Text style={styles.artist}> {musicVideo.artistName} </Text>
       <View style={{top: 10}}>
