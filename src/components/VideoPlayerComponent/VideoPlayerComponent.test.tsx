@@ -9,7 +9,10 @@ jest.mock('react-native-video', () => 'Video');
 
 function renderTestVideoPlayerComponent() {
   return (
-    <VideoPlayerComponent videoUrl="https://video-ssl.itunes.apple.com/itunes-assets/Video125/v4/38/64/3d/38643d92-85ec-e87e-c4df-1ebad5c47076/mzvf_6485146669999171799.640x480.h264lc.U.p.m4v" />
+    <VideoPlayerComponent
+      videoUrl="https://video-ssl.itunes.apple.com/itunes-assets/Video125/v4/38/64/3d/38643d92-85ec-e87e-c4df-1ebad5c47076/mzvf_6485146669999171799.640x480.h264lc.U.p.m4v"
+      doControls={true}
+    />
   );
 }
 

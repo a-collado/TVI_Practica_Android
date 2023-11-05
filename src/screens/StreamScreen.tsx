@@ -1,10 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React, {useCallback, useEffect, useState} from 'react';
-import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import {MusicVideoComponentProps} from '../components/MusicVideoComponent/MusicVideoComponent';
+import React from 'react';
+import {View, Text, StyleSheet} from 'react-native';
 import VideoPlayerComponent from '../components/VideoPlayerComponent/VideoPlayerComponent';
-import {storage} from '../../App';
-import TvChannelComponent, {TvChannelComponentProps} from '../components/TvChannelComponent/TvChannelComponent';
+import {TvChannelComponentProps} from '../components/TvChannelComponent/TvChannelComponent';
 
 const styles = StyleSheet.create({
   title: {
@@ -39,13 +37,17 @@ const styles = StyleSheet.create({
 export default function StreamScreen({navigation, route}: any) {
   const streamVideo: TvChannelComponentProps = route.params.streamVideo;
   route.name = streamVideo.name;
-  
+
   return (
     <View>
-      <VideoPlayerComponent videoUrl={streamVideo.url} doControls={false}/>
-      
-      <Text style={styles.title}> {streamVideo.name} <Text style={styles.text}> ( {streamVideo.country} )</Text></Text>
-      
+      <VideoPlayerComponent videoUrl={streamVideo.url} doControls={false} />
+
+      <Text style={styles.title}>
+        {' '}
+        {streamVideo.name}{' '}
+        <Text style={styles.text}> ( {streamVideo.country} )</Text>
+      </Text>
+
       <View style={{top: 10}}>
         <Text style={styles.text}>Tipo: {streamVideo.type} </Text>
       </View>

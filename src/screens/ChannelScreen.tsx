@@ -1,9 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
 /* eslint-disable no-trailing-spaces */
 /* eslint-disable prettier/prettier */
-import React, { useState, useEffect } from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
-import Video from 'react-native-video';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity, FlatList} from 'react-native';
 import tvData from './../Api/tv.json';
 import TvChannelComponent from '../components/TvChannelComponent/TvChannelComponent';
 
@@ -37,10 +36,6 @@ const styles = StyleSheet.create({
   });
   
 export default function ChannelScreen ({navigation}: any) {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState<boolean>(false);
-    const [error, setError] = useState<string>('');
-    const [url, setUrl] = useState<string>('');
 
     const [expandTouchable, setExpandTouchable] = useState<string>('');
     const [expandSecondTouchable, setExpandSecondTouchable] = useState<string>('');
