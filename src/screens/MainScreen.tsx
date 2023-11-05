@@ -1,7 +1,6 @@
 /* eslint-disable react-native/no-inline-styles */
 import React from 'react';
-
-import {View, Text, FlatList, StyleSheet} from 'react-native';
+import {View, Text, FlatList, StyleSheet, Image} from 'react-native';
 import MusicVideoComponent from '../components/MusicVideoComponent/MusicVideoComponent';
 import {useFetch} from '../Api/Api';
 import InputComponent from '../components/InputComponent/InputComponent';
@@ -30,7 +29,7 @@ const styles = StyleSheet.create({
   },
   listView: {
     marginTop: 16,
-    height: '68%',
+    height: '79%',
   },
   header: {
     flexDirection: 'row',
@@ -85,10 +84,51 @@ export default function MainScreen({navigation}: any) {
   }
 
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Buscar">{searchList}</Tab.Screen>
-      <Tab.Screen name="Favoritos" component={FavouritesScreen} />
-      <Tab.Screen name="TV Channels" component={ChannelScreen} />
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        // eslint-disable-next-line react/no-unstable-nested-components
+        tabBarIcon: ({focused, color, size}) => {
+          let iconUrl = '';
+
+          switch (route.name) {
+            case 'Buscar':
+              iconUrl = focused
+                ? 'https://img.icons8.com/?size=256&id=7695&format=png'
+                : 'https://img.icons8.com/?size=256&id=132&format=png';
+              break;
+            case 'Favoritos':
+              iconUrl = focused
+                ? 'https://img.icons8.com/?size=256&id=7856&format=png'
+                : 'https://img.icons8.com/?size=256&id=104&format=png';
+              break;
+            case 'Canales TV':
+              iconUrl = focused
+                ? 'https://img.icons8.com/?size=50&id=9989&format=png'
+                : 'https://img.icons8.com/?size=256&id=540&format=png';
+              break;
+          }
+
+          return (
+            <Image
+              source={{uri: iconUrl}}
+              style={{height: size, width: size, tintColor: color}}
+            />
+          );
+        },
+      })}>
+      <Tab.Screen name="Buscar" options={{headerShown: false}}>
+        {searchList}
+      </Tab.Screen>
+      <Tab.Screen
+        name="Favoritos"
+        component={FavouritesScreen}
+        options={{headerShown: false}}
+      />
+      <Tab.Screen
+        name="Canales TV"
+        component={ChannelScreen}
+        options={{headerShown: false}}
+      />
     </Tab.Navigator>
   );
 }

@@ -27,6 +27,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     borderWidth: 1,
   },
+  listView: {
+    marginTop: 16,
+    height: '98%',
+  },
 });
 
 export default function FavouritesScreen({navigation}: any) {
@@ -43,7 +47,7 @@ export default function FavouritesScreen({navigation}: any) {
   }, [fetchData, isFocused]);
 
   return (
-    <View style={[styles.flexcolumn, {width: '90%'}]}>
+    <View style={[styles.flexcolumn, styles.listView]}>
       <FlatList
         data={songs}
         renderItem={({item}) => (

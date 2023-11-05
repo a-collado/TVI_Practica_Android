@@ -31,14 +31,11 @@ const styles = StyleSheet.create({
     },
   });
   
-const FILE_PATH = './../Api/tv.json';
-export default function ChannelScreen ({navigation, route}: any) {
+export default function ChannelScreen () {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>('');
     const [url, setUrl] = useState<string>('');
-
-    route.name = 'Canales de TV';
 
     const [expandTouchable, setExpandTouchable] = useState<string>('');
     const [expandSecondTouchable, setExpandSecondTouchable] = useState<string>('');
