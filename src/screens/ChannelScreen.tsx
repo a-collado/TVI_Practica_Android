@@ -1,6 +1,10 @@
+/* eslint-disable no-trailing-spaces */
+/* eslint-disable prettier/prettier */
 import React, { useState, useEffect } from "react";
 import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
 import Video from "react-native-video";
+import tvData from './../Api/tv.json';
+
 
 const styles = StyleSheet.create({
     flexcolumn: {
@@ -27,7 +31,7 @@ const styles = StyleSheet.create({
     },
   });
   
-const FILE_PATH = '../Api/tv.json';
+const FILE_PATH = './../Api/tv.json';
 export default function ChannelScreen ({navigation, route}: any) {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState<boolean>(false);
@@ -36,30 +40,6 @@ export default function ChannelScreen ({navigation, route}: any) {
 
     route.name = 'Canales de TV';
 
-    useEffect(() => {
-        let jsonData = require(FILE_PATH);
-        setData(jsonData);
-        /*fetch (FILE_PATH)
-        .then((response) => {
-            if (!response.ok) {
-                throw new Error(response.statusText);
-            }
-            console.log(response.json());
-            console.log('ghjgyj');
-            
-             return response.json();
-        })
-        .then((data) => {
-            setData(data);
-            setLoading(false);
-            setError('');console.log('ghjgjfhytgyj');
-        })
-        .catch((e) => {
-            setError(`${e} Could not Fetch Data `);
-            setLoading(false);console.log(error);
-        });*/
-    }, []);
-    console.log(data);
     const [expandTouchable, setExpandTouchable] = useState<string>('');
     const [expandSecondTouchable, setExpandSecondTouchable] = useState<string>('');
 
@@ -83,7 +63,7 @@ export default function ChannelScreen ({navigation, route}: any) {
     return (
         /*<Text></Text>*/<View>
             <FlatList 
-            data = {data.countries}
+            data = {tvData.countries}
             renderItem={({item}) => (
                 <View>
                     <TouchableOpacity onPress = {() => onExpandTouchable(item.name)} style={[styles.searchbutton]}>
