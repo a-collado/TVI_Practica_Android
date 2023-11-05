@@ -21,11 +21,16 @@ const styles = StyleSheet.create({
     left: 5,
   },
   button: {
+    alignSelf: 'center',
+    top: 15,
     padding: 14,
     backgroundColor: 'lightgray',
     borderRadius: 30,
     borderWidth: 1,
     width: '40%',
+  },
+  buttonText: {
+    alignSelf: 'center',
   },
 });
 
@@ -85,11 +90,11 @@ export default function DetailScreen({navigation, route}: any) {
         </Text>
         {fav ? (
           <TouchableOpacity style={styles.button} onPress={onPressFav}>
-            <Text>Guardar en favoritos</Text>
+            <Text style={styles.text}>Guardar en favoritos</Text>
           </TouchableOpacity>
         ) : (
           <TouchableOpacity style={styles.button} onPress={onPressNoFav}>
-            <Text>Quitar de favoritos</Text>
+            <Text style={styles.text}>Quitar de favoritos</Text>
           </TouchableOpacity>
         )}
       </View>

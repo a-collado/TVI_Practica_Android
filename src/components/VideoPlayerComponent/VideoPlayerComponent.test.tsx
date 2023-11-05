@@ -32,8 +32,8 @@ describe('Test unitarios de Video Player Component', () => {
 
     // Expect
     expect(screen.getByTestId('MusicVideoPlayer')).toHaveStyle({
-      height: 144,
-      width: 200,
+      height: 250,
+      width: '100%',
     });
   });
 

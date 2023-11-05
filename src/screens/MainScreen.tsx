@@ -4,9 +4,11 @@ import React from 'react';
 import {View, Text, FlatList, StyleSheet} from 'react-native';
 import MusicVideoComponent from '../components/MusicVideoComponent/MusicVideoComponent';
 import {useFetch} from '../Api/Api';
-import {TouchableOpacity} from 'react-native';
 import InputComponent from '../components/InputComponent/InputComponent';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import FavouritesScreen from './FavouritesScreen';
+import ChannelScreen from './ChannelScreen';
+import Ionicons from 'react-native-ionicons';
 
 const styles = StyleSheet.create({
   flexcolumn: {
@@ -38,20 +40,13 @@ const styles = StyleSheet.create({
   },
 });
 
+const Tab = createBottomTabNavigator();
+
 export default function MainScreen({navigation}: any) {
-  const Tab = createBottomTabNavigator();
   const {search, data} = useFetch();
 
   const onSearch = (value: string) => {
     search(value);
-  };
-
-  const onPressChannelNavigation = () => {
-    navigation.navigate('Channel');
-  };
-
-  const onPressFavsNavigation = () => {
-    navigation.navigate('Favourites');
   };
 
   function searchList() {
@@ -91,22 +86,29 @@ export default function MainScreen({navigation}: any) {
   }
 
   return (
-    <View>
-      {searchList()}
-      <Tab.Navigator>
-        <Tab.Screen name="Search" component={searchList()} />
-      </Tab.Navigator>
-      <TouchableOpacity
-        onPress={onPressChannelNavigation}
-        style={[styles.searchbutton, {marginTop: 9}]}>
-        <Text style={{color: 'white'}}>Canales TV</Text>
-      </TouchableOpacity>
+    <Tab.Navigator
+      screenOptions={({route}) => ({
+        // eslint-disable-next-line react/no-unstable-nested-components
+        tabBarIcon: ({focused, color, size}) => {
+          let iconName;
 
-      <TouchableOpacity
-        onPress={onPressFavsNavigation}
-        style={[styles.searchbutton, {marginTop: 9}]}>
-        <Text style={{color: 'white'}}>Favoritos</Text>
-      </TouchableOpacity>
-    </View>
+          if (route.name === 'Buscar') {
+            iconName = focused
+              ? 'ios-information-circle'
+              : 'ios-information-circle-outline';
+          } else if (route.name === 'Favoritos') {
+            iconName = focused ? 'ios-list' : 'ios-list-outline';
+          }
+
+          // You can return any component that you like here!
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}>
+      <Tab.Screen name="Buscar">{searchList}</Tab.Screen>
+      <Tab.Screen name="Favoritos" component={FavouritesScreen} />
+      <Tab.Screen name="TV Channels" component={ChannelScreen} />
+    </Tab.Navigator>
   );
 }
