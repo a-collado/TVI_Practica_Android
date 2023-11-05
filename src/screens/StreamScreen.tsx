@@ -4,7 +4,7 @@ import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {MusicVideoComponentProps} from '../components/MusicVideoComponent/MusicVideoComponent';
 import VideoPlayerComponent from '../components/VideoPlayerComponent/VideoPlayerComponent';
 import {storage} from '../../App';
-import {TvChannelComponentProps} from '../components/TvChannelComponent/TvChannelComponent';
+import TvChannelComponent, {TvChannelComponentProps} from '../components/TvChannelComponent/TvChannelComponent';
 
 const styles = StyleSheet.create({
   title: {
@@ -38,14 +38,16 @@ const styles = StyleSheet.create({
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 export default function StreamScreen({navigation, route}: any) {
   const streamVideo: TvChannelComponentProps = route.params.streamVideo;
-  route.name = streamVideo.type;
-
+  route.name = streamVideo.name;
+  
   return (
     <View>
       <VideoPlayerComponent videoUrl={streamVideo.url} doControls={false}/>
-      <Text style={styles.title}> {streamVideo.name} </Text>
+      
+      <Text style={styles.title}> {streamVideo.name} <Text style={styles.text}> ( {streamVideo.country} )</Text></Text>
+      
       <View style={{top: 10}}>
-        <Text style={styles.text}>País: {streamVideo.country} </Text>
+        <Text style={styles.text}>Tipo: {streamVideo.type} </Text>
       </View>
     </View>
   );

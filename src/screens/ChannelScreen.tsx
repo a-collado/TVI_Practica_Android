@@ -22,14 +22,11 @@ const styles = StyleSheet.create({
     },
     button: {
       padding: 14,
-      backgroundColor: 'whitesmoke',
-      borderRadius: 30,
-      //alignSelf: 'flex-start',
-      borderWidth: 1,
+      
       margin: 4,
     },
     section: {
-        borderRadius: 15,
+        borderRadius: 30,
         borderWidth: 1,
         margin: 5,
     },
@@ -70,9 +67,9 @@ export default function ChannelScreen ({navigation}: any) {
             <FlatList 
             data = {tvData.countries}
             renderItem={({item}) => (
-                <View style = {[styles.section, {backgroundColor: 'lightgray'}]}>
+                <View style = {styles.section}>
                     <TouchableOpacity onPress = {() => onExpandTouchable(item.name)} style={[styles.button, {width: '95%', alignSelf: 'center'}]}>
-                        <Text style = {{fontWeight: 'bold', color: '#303030'}}>{item.name}</Text>
+                        <Text style = {{fontWeight: 'bold'}}>{item.name}</Text>
                     </TouchableOpacity>
 
                     {expandTouchable === item.name && (
@@ -81,7 +78,7 @@ export default function ChannelScreen ({navigation}: any) {
                         renderItem={({item: item2}) => (
                             <View  style = {[styles.section, {width: '85%', alignSelf: 'flex-end'}]}>
                                 <TouchableOpacity onPress = {() => onExpandSecondTouchable(item2.name)} style={[styles.button, {width: '95%', alignSelf: 'center'}]}>
-                                    <Text style = {{fontWeight: 'bold', color: '#585858'}}>{item2.name}</Text>
+                                    <Text style = {{fontWeight: 'bold'}}>{item2.name}</Text>
                                 </TouchableOpacity>
                                 
                                 {expandSecondTouchable === item2.name && (
