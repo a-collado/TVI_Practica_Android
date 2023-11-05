@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import {View, Text, Image, StyleSheet, TouchableOpacity, FlatList} from 'react-native'
 import Video from "react-native-video";
 import tvData from './../Api/tv.json';
+import TvChannelComponent from "../components/TvChannelComponent/TvChannelComponent";
 
 
 const styles = StyleSheet.create({
@@ -18,12 +19,18 @@ const styles = StyleSheet.create({
       alignSelf: 'center',
       alignItems: 'center',
     },
-    searchbutton: {
+    button: {
       padding: 14,
-      backgroundColor: 'lightgray',
+      backgroundColor: 'whitesmoke',
       borderRadius: 30,
-      alignSelf: 'center',
-      borderWidth: 1
+      //alignSelf: 'flex-start',
+      borderWidth: 1,
+      margin: 4
+    },
+    section: {
+        borderRadius: 15,
+        borderWidth: 1,
+        margin: 5
     },
     video: {
         height: 144,
@@ -49,6 +56,7 @@ export default function ChannelScreen ({navigation, route}: any) {
         } else {
             setExpandTouchable(id)
         }
+        setExpandSecondTouchable('')
     }
 
     const onExpandSecondTouchable = (id: string) => {
@@ -58,49 +66,59 @@ export default function ChannelScreen ({navigation, route}: any) {
             setExpandSecondTouchable(id)
         }
     }
-    
 
     return (
-        /*<Text></Text>*/<View>
+        <View>
             <FlatList 
             data = {tvData.countries}
             renderItem={({item}) => (
-                <View>
-                    <TouchableOpacity onPress = {() => onExpandTouchable(item.name)} style={[styles.searchbutton]}>
-                        <Text style = {{color: 'white'}}>{item.name}</Text>
+                <View style = {[styles.section, {backgroundColor: 'lightgray'}]}>
+                    <TouchableOpacity onPress = {() => onExpandTouchable(item.name)} style={[styles.button, {width: '95%', alignSelf: 'center'}]}>
+                        <Text style = {{fontWeight: 'bold', color: '#303030'}}>{item.name}</Text>
                     </TouchableOpacity>
 
                     {expandTouchable === item.name && (
                         <FlatList
                         data = {item.ambits}
                         renderItem={({item: item2}) => (
-                            <View>
-                                <TouchableOpacity onPress = {() => onExpandSecondTouchable(item2.name)} style={[styles.searchbutton]}>
-                                    <Text>{item2.name}</Text>
+                            <View  style = {[styles.section, {width: '85%', alignSelf: 'flex-end'}]}>
+                                <TouchableOpacity onPress = {() => onExpandSecondTouchable(item2.name)} style={[styles.button, {width: '95%', alignSelf: 'center'}]}>
+                                    <Text style = {{fontWeight: 'bold', color: '#585858'}}>{item2.name}</Text>
                                 </TouchableOpacity>
                                 
                                 {expandSecondTouchable === item2.name && (
                                     <FlatList
                                     data = {item2.channels}
                                     renderItem={({item: item3}) => (
-                                        <View style={[styles.searchbutton]}>
-                                            <Text>{item3.name}</Text>
+                                        <View style={[styles.button, {width: '80%', alignSelf: 'flex-end'}]}>
+                                            <Text style={{fontWeight: 'bold', fontStyle: 'italic', color: 'gray'}}>{item3.name}</Text>
                                             {item3.options.length === 0 ? (
-                                                <Text>No dispone</Text>
+                                                <Text style={{fontStyle: 'italic'}}>No dispone</Text>
                                             ): (
-                                                <FlatList
-                                                data = {item3.options}
-                                                renderItem={({item: item4}) => (
-                                                    <TouchableOpacity style={[styles.searchbutton]}>
-                                                        <Text>{item4.url}</Text>
-                                                        <Video
-                                                            style={styles.video}
-                                                            source={{uri: item4.url}}
-                                                            paused={false}
-                                                            controls={true}
+                                                <View>
+                                                    <FlatList style = {{flexDirection: 'row'}}
+                                                    data = {item3.options}
+                                                    renderItem={({item: item4}) => (
+                                                        <TvChannelComponent 
+                                                            name = {item3.name}
+                                                            type = {item2.name}
+                                                            logo = {item3.logo}
+                                                            url = {item4.url}
+                                                            country = {item.name}
+                                                            callback = {() => {
+                                                                navigation.navigate('Stream', {
+                                                                    streamVideo: {
+                                                                        name: item3.name,
+                                                                        type: item2.name,
+                                                                        logo: item3.logo,
+                                                                        url: item4.url,
+                                                                        country: item.name,
+                                                                    }
+                                                                });
+                                                            }}
                                                         />
-                                                    </TouchableOpacity>
-                                                )}/>
+                                                    )}/>
+                                                </View>
                                             )}
                                         </View>
                                     )}/>
