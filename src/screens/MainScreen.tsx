@@ -8,7 +8,6 @@ import InputComponent from '../components/InputComponent/InputComponent';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FavouritesScreen from './FavouritesScreen';
 import ChannelScreen from './ChannelScreen';
-import Ionicons from 'react-native-ionicons';
 
 const styles = StyleSheet.create({
   flexcolumn: {
@@ -86,26 +85,7 @@ export default function MainScreen({navigation}: any) {
   }
 
   return (
-    <Tab.Navigator
-      screenOptions={({route}) => ({
-        // eslint-disable-next-line react/no-unstable-nested-components
-        tabBarIcon: ({focused, color, size}) => {
-          let iconName;
-
-          if (route.name === 'Buscar') {
-            iconName = focused
-              ? 'ios-information-circle'
-              : 'ios-information-circle-outline';
-          } else if (route.name === 'Favoritos') {
-            iconName = focused ? 'ios-list' : 'ios-list-outline';
-          }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: 'tomato',
-        tabBarInactiveTintColor: 'gray',
-      })}>
+    <Tab.Navigator>
       <Tab.Screen name="Buscar">{searchList}</Tab.Screen>
       <Tab.Screen name="Favoritos" component={FavouritesScreen} />
       <Tab.Screen name="TV Channels" component={ChannelScreen} />
