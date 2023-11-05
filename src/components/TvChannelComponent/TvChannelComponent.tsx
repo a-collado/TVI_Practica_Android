@@ -1,6 +1,8 @@
 /* eslint-disable react-native/no-inline-styles */
-import React from 'react';
+import React, { useState } from 'react';
 import {Image, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+
+const IMG_ERROR = 'https://static.thenounproject.com/png/2099077-200.png'
 
 export type TvChannelComponentProps = {
   name: string;
@@ -19,12 +21,20 @@ const styles = StyleSheet.create({
 });
 
 function TvChannelComponent(props: TvChannelComponentProps) {
+const [error, setError] = useState(false);
+
+const onImageError = () => {
+    setError(true)
+};
+
   return (
     <TouchableOpacity style = {{margin: 3}} onPress={props.callback}>
         {props.logo && (
-          <Image style= {styles.logo} source={{uri: props.logo}} />
+          <Image style= {styles.logo} source={{uri: props.logo}} onError={onImageError}/>
         )}
-          <Text style = {{fontStyle: 'italic'}}>Click</Text>
+        {error && (
+          <Image style= {[styles.logo, {marginTop: -40}]} source={{uri: IMG_ERROR}} onError={onImageError}/>
+        )}
         
     </TouchableOpacity>
   );

@@ -42,7 +42,7 @@ export default function StreamScreen({navigation, route}: any) {
 
   return (
     <View>
-      <VideoPlayerComponent videoUrl={streamVideo.url} doControls={false} />
+      <VideoPlayerComponent videoUrl={streamVideo.url} doControls={false}/>
       <Text style={styles.title}> {streamVideo.name} </Text>
       <View style={{top: 10}}>
         <Text style={styles.text}>País: {streamVideo.country} </Text>
